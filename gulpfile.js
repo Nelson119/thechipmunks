@@ -265,7 +265,7 @@ gulp.task('watch', function() {
   //   browserSync.reload();
   // });
   gulp.watch([path.source + 'styles/**/*'], ['styles']).on('change', function () {
-    browserSync.reload();
+    // browserSync.reload();
   });
   gulp.watch([path.source + 'scripts/**/*'], ['jshint', 'scripts']).on('change', function () {
     browserSync.reload();

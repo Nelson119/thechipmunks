@@ -6,5 +6,9 @@ tinypng
 bower_components
 test/bower_components
 *Thumbs.db*
+<<<<<<< HEAD
 *DS_Store*
 4*fan9WQ%PHTwhw#cI
+=======
+.DS_Store
+*99_文章排版*

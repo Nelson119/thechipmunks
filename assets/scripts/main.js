@@ -32,14 +32,19 @@
       finalize: function() {
         // JavaScript to be fired on the home page, after the init JS
         // alert($('.slick').slick);
+        $('.slick li').width($('.mobile-home').width());
+        $('.slick li').height($(window).height() - $('.mobile-home >nav').css('margin-top').replace(/px/,'') - $('.mobile-home >nav').css('padding-top').replace(/px/,''));
+
         $('.slick').slick({
           // dots: true,
           infinite: true,
           slidesToShow: 1,
-          variableWidth: true,
-          centerMode: true,
+          slidesToSlide: 1,
+          // variableWidth: true,
+          // centerMode: true,
           pauseOnHover: true,
-          speed: 750,
+          draggable: false,
+          speed: 350,
           cssEase: 'ease-in-out',
           fade: true
         });
@@ -47,6 +52,17 @@
           $('.slick li').width($('.slick-list').width());
           $('.slick li').height($(window).height() - $('.mobile-home >nav').css('margin-top').replace(/px/,'') - $('.mobile-home >nav').css('padding-top').replace(/px/,''));
         }).trigger('resize');
+
+        //我要當明星
+        $('.mobile-home .slick-track .home .star').on('click', function(){
+          $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .download-app-tutorial').index() );
+        });
+        //我已經錄好，下一步
+        $('.mobile-home .slick-track .download-app-tutorial .goto-upload').on('click', function(){
+          $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .upload-video').index());
+        });
+
+
       }
     },
     // About us page, note the change from about-us to about_us.
