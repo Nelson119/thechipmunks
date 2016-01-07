@@ -62,7 +62,7 @@
           $('#fileupload').trigger('click');
         });
         $('#fileupload').fileupload({
-            url: '/',
+            url: './',
             dataType: 'json',
             done: function (e, data) {
                 $('.slick').removeClass('loading');

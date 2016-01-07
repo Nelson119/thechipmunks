@@ -136,12 +136,12 @@ function copyfile_chunked($infile, $outfile)
         $video_id = $response->getGraphObject()->getProperty('id');
         $json['id'] = $video_id;
         // echo json_encode($response);
-      } catch(Facebook\Exceptions\FacebookResponseException $e) {
+      } catch(\Facebook\Exceptions\FacebookResponseException $e) {
         // When Graph returns an error
         $message = 'Graph returned an error: ' . $e->getMessage();
         header('Content-Type: application/json');
         $json['message'] = json_encode($message);
-      } catch(Facebook\Exceptions\FacebookSDKException $e) {
+      } catch(\Facebook\Exceptions\FacebookSDKException $e) {
         // When validation fails or other local issues
         $message = 'Facebook SDK returned an error: ' . $e->getMessage();
         header('Content-Type: application/json');
