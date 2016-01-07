@@ -1,4 +1,7 @@
 <?php
+  error_reporting(E_ALL); // or E_STRICT
+  ini_set("display_errors",1);
+  ini_set("memory_limit","1024M");
 /**
  * Sage includes
  *
@@ -11,6 +14,7 @@
  */
 $sage_includes = [
   'lib/assets.php',    // Scripts and stylesheets
+  'lib/upload.php',    // Scripts and stylesheets
   'lib/extras.php',    // Custom functions
   'lib/setup.php',     // Theme setup
   'lib/titles.php',    // Page titles
@@ -49,4 +53,5 @@ function remove_thumbnail_dimensions( $html ) {                                 
 }
 
 add_filter('show_admin_bar', '__return_false');
+
 

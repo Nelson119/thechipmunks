@@ -4,6 +4,7 @@
 	height:100%;
 	top:0;
 	left:0;
+	font-size:14px;
 	a:focus{
 		outline:none;
 	}
@@ -166,6 +167,15 @@
 			width: 100%;
 			position:relative;
 		}
+		&.loading:after {
+		    background: rgba(0, 0, 0, 0.2) url(../images/ajax-loader.gif) no-repeat scroll center center /20px 20px;
+		    content: " ";
+		    height: 100%;
+		    left: 0;
+		    position: fixed;
+		    top: 0;
+		    width: 100%;
+		}
 		.home{
 			h2{
 				margin:percentage(109/800) 0 0 percentage(204/800);
@@ -206,7 +216,7 @@
 			}
 		}
 		.download-app-tutorial{
-			padding-top: percentage(75/880);
+			padding-top: 1em * (75/14);
 			.center{
 				background:url(../images/mobile/download-app-tutorial-bg.png) no-repeat center top/ cover;
 				margin:0 auto;
@@ -241,6 +251,9 @@
 					left:0;
 					width:percentage(563/660);
 					padding-bottom:percentage(173/660);
+					input{
+						opacity:0;
+					}
 					img{
 						position:absolute;
 						top:0;

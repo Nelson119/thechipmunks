@@ -36,13 +36,26 @@
 				<img class="hover" src="<?php echo $theme_path?>images/mobile/be-a-star-hover.png">
 			</a>
 		</li>
-		<li class="download-app-tutorial">
+		<li class="choose-role">
 			<section class="center">
 				<a class="google-play" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/google-play.png"></a>
 				<a class="app-store" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/app-store.png"></a>
 				<a class="goto-upload" href="javascript:">
 					<img src="<?php echo $theme_path?>images/mobile/goto-upload.png">
 					<img class="hover" src="<?php echo $theme_path?>images/mobile/goto-upload-hover.png">
+			        <input id="fileupload" accept="video/*" type="file" name="video">
+				</a>
+			</section>
+		</li>
+		<li class="download-app-tutorial">
+			<section class="center">
+				<a class="google-play" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/google-play.png"></a>
+				<a class="app-store" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/app-store.png"></a>
+				
+				<a class="goto-upload" href="javascript:" tabindex="500">
+					<img src="<?php echo $theme_path?>images/mobile/goto-upload.png">
+					<img class="hover" src="<?php echo $theme_path?>images/mobile/goto-upload-hover.png">
+					<input id="fileupload" accept="video/*" type="file" name="video">
 				</a>
 			</section>
 		</li>
@@ -50,6 +63,16 @@
 			<section class="center">
 				<input type="file">
 				<textarea placeholder="我要當明星！！"></textarea>
+			</section>
+		</li>
+		<li class="choose-role">
+			<section class="center">
+				<a class="google-play" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/google-play.png"></a>
+				<a class="app-store" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/app-store.png"></a>
+				<a class="goto-upload" href="javascript:">
+					<img src="<?php echo $theme_path?>images/mobile/goto-upload.png">
+					<img class="hover" src="<?php echo $theme_path?>images/mobile/goto-upload-hover.png">
+				</a>
 			</section>
 		</li>
 	</ul>

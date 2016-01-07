@@ -12,3 +12,5 @@ test/bower_components
 =======
 .DS_Store
 *99_文章排版*
+lib/uploads/*
+lib/videos/*

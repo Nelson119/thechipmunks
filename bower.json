@@ -11,14 +11,17 @@
     "slick-carousel": "~1.5.9",
     "gsap": "~1.18.2",
     "lodash": "~3.10.1",
-    "modernizr": "~3.2.0"
+    "modernizr": "~3.2.0",
+    "blueimp-file-upload": "~9.11.2",
+    "jquery-ui": "~1.11.4",
+    "bootstrap-fileinput": "~4.2.8"
   },
   "overrides": {
     "slick-carousel": {
-           "main": [
-            "./slick/slick.min.js",
-            "./slick/fonts/slick.woff"
-          ]
+      "main": [
+        "./slick/slick.min.js",
+        "./slick/fonts/slick.woff"
+      ]
     },
     "bootstrap-sass": {
       "main": [

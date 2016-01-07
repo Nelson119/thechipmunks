@@ -59,9 +59,28 @@
         });
         //我已經錄好，下一步
         $('.mobile-home .slick-track .download-app-tutorial .goto-upload').on('click', function(){
-          $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .upload-video').index());
+          $('#fileupload').trigger('click');
         });
-
+        $('#fileupload').fileupload({
+            url: '/',
+            dataType: 'json',
+            done: function (e, data) {
+                $('.slick').removeClass('loading');
+                $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .upload-video').index());
+            },
+            progressall: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                // $('#progress .progress-bar').css(
+                //     'width',
+                //     progress + '%'
+                // );
+            }
+        })
+        .bind('fileuploadstart', function (e) {
+            $('.slick').addClass('loading');
+        })
+        .prop('disabled', !$.support.fileInput)
+            .parent().addClass($.support.fileInput ? undefined : 'disabled');
 
       }
     },
