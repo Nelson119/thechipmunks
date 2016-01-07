@@ -247,7 +247,7 @@ gulp.task('clean', require('del').bind(null, [path.dist]));
 // See: http://www.browsersync.io
 gulp.task('watch', function() {
   connect.server({
-    ini : '/Users/niusen/project/m/php.ini',
+    // ini : '/Users/niusen/project/m/php.ini',
     base : '../../../',
     port : '8080'
   }, function (){

@@ -53,14 +53,33 @@
           $('.slick li').height($(window).height() - $('.mobile-home >nav').css('margin-top').replace(/px/,'') - $('.mobile-home >nav').css('padding-top').replace(/px/,''));
         }).trigger('resize');
 
+        //活動辦法
+        $('.mobile-home nav .term').on('click', function(){
+          $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .term').index() );
+        });
+        //回首頁
+        $('.mobile-home nav .home').on('click', function(){
+          $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .home').index() );
+        });
         //我要當明星
         $('.mobile-home .slick-track .home .star').on('click', function(){
+          $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .pick').index() );
+        });
+        //角色選擇
+        $('.mobile-home .slick-track .pick a').on('click', function(){
           $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .download-app-tutorial').index() );
         });
         //我已經錄好，下一步
         $('.mobile-home .slick-track .download-app-tutorial .goto-upload').on('click', function(){
-          $('#fileupload').trigger('click');
+          $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .upload').index() );
         });
+
+
+        //選擇影片
+        // $('.mobile-home .slick-track .upload .pickvideo').on('click', function(){
+        //   $('.mobile-home .slick-track .upload #fileupload').trigger('click');
+        // });
+        //上傳影片
         $('#fileupload').fileupload({
             url: './',
             dataType: 'json',

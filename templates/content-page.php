@@ -18,10 +18,10 @@
 <section class="mobile-home visible-xs">
 	<nav>
 		<ul>
-			<li><a href="./"><h1>鼠來寶</h1></a></li>
-			<li><a href="./">首頁</a></li>
-			<li><a href="./">活動辦法</a></li>
-			<li><a href="./">facebook</a></li>
+			<li><a class="home" href="javascript:"><h1>鼠來寶</h1></a></li>
+			<li><a class="home" href="javascript:">首頁</a></li>
+			<li><a class="term" href="javascript:">活動辦法</a></li>
+			<li><a class="facebook" href="javascript:">facebook</a></li>
 		</ul>
 	</nav>
 	<ul class="slick">
@@ -36,16 +36,12 @@
 				<img class="hover" src="<?php echo $theme_path?>images/mobile/be-a-star-hover.png">
 			</a>
 		</li>
-		<li class="choose-role">
-			<section class="center">
-				<a class="google-play" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/google-play.png"></a>
-				<a class="app-store" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/app-store.png"></a>
-				<a class="goto-upload" href="javascript:">
-					<img src="<?php echo $theme_path?>images/mobile/goto-upload.png">
-					<img class="hover" src="<?php echo $theme_path?>images/mobile/goto-upload-hover.png">
-			        <input id="fileupload" accept="video/*" type="file" name="video">
-				</a>
-			</section>
+		<li class="term">
+		</li>
+		<li class="pick">
+			<a title="艾文" class="alvin" href="javascript:">alvin</a>
+			<a title="賽門" class="simon" href="javascript:">simon</a>
+			<a title="喜多" class="sidd" href="javascript:">sidd</a>
 		</li>
 		<li class="download-app-tutorial">
 			<section class="center">
@@ -55,14 +51,20 @@
 				<a class="goto-upload" href="javascript:" tabindex="500">
 					<img src="<?php echo $theme_path?>images/mobile/goto-upload.png">
 					<img class="hover" src="<?php echo $theme_path?>images/mobile/goto-upload-hover.png">
-					<input id="fileupload" accept="video/*" type="file" name="video">
 				</a>
 			</section>
 		</li>
-		<li class="upload-video">
+		<li class="upload">
 			<section class="center">
-				<input type="file">
-				<textarea placeholder="我要當明星！！"></textarea>
+				<a class="pickvideo" href="javascript:" tabindex="500">
+					<img src="<?php echo $theme_path?>images/mobile/btn-pick.png">
+					<input id="fileupload" accept="video/*" type="file" name="video">
+				</a>
+				<textarea placeholder="我要當明星！！">我要當明星！！</textarea>
+				<a class="submit" href="javascript:" tabindex="500">
+					<img src="<?php echo $theme_path?>images/mobile/submit.png">
+					<img class="hover" src="<?php echo $theme_path?>images/mobile/submit-hover.png">
+				</a>
 			</section>
 		</li>
 		<li class="choose-role">

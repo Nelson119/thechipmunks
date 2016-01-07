@@ -155,6 +155,8 @@ function copyfile_chunked($infile, $outfile)
 
       if($response->getGraphObject()->getProperty('status')->getProperty('video_status') != 'ready'){
         continue;
+      }else{
+        $status = true;
       }
 
 
