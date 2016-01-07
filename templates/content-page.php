@@ -4,7 +4,7 @@
 <section class="desktop-home hidden-xs fade in">
 	<h1 class="logo"><img src="<?php echo $theme_path?>images/the-chipmunks.png"></h1>
 	<nav>
-		<a href="javascript:" class="more">
+		<a href="https://www.youtube.com/watch?v=CCY0alePMeM" class="more">
 			<img src="<?php echo $theme_path?>images/more.png">
 			<img class="hover" src="<?php echo $theme_path?>images/more-hover.png">
 		</a>
@@ -18,8 +18,8 @@
 <section class="mobile-home visible-xs">
 	<nav>
 		<ul>
-			<li><a class="home" href="javascript:"><h1>鼠來寶</h1></a></li>
-			<li><a class="home" href="javascript:">首頁</a></li>
+			<li><a class="home" href="<?php echo get_site_url()?>"><h1>鼠來寶</h1></a></li>
+			<li><a class="home" href="<?php echo get_site_url()?>">首頁</a></li>
 			<li><a class="term" href="javascript:">活動辦法</a></li>
 			<li><a class="facebook" href="javascript:">facebook</a></li>
 		</ul>

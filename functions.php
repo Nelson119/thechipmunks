@@ -55,3 +55,28 @@ function remove_thumbnail_dimensions( $html ) {                                 
 add_filter('show_admin_bar', '__return_false');
 
 
+// add_rewrite_rule('^section/(\w+)/chipmunks/(\w+)/?','index.php?page_id=4&section=$matches[1]&cm=$matches[2]');
+// add_rewrite_rule('^section/(\w+)/films/(\S+)/?','index.php?page_id=4&section=$matches[1]&vid=$matches[2]');
+function custom_rewrite_basic() {
+  // add_rewrite_rule('^slick/([^/]+)/?', 'index.php?pagename=term&slick=$matches[1]', 'top');
+  add_rewrite_rule('^slick/([^/]+)/cm/([^/]+)/?', '?slick=$matches[1]&cm=$matches[2]', 'top');
+  add_rewrite_rule('^slick/([^/]+)/vid/([^/]+)/?', '?slick=$matches[1]&vid=$matches[2]', 'top');
+}
+add_action('init', 'custom_rewrite_basic');
+function custom_rewrite_tag() {
+  add_rewrite_tag('%slick%', '([^&]+)');
+  add_rewrite_tag('%cm%', '([^&]+)');
+  add_rewrite_tag('%vid%', '([^&]+)');
+}
+add_action('init', 'custom_rewrite_tag', 10, 0);
+
+
+add_filter('the_title','set_title');
+function set_title(){
+    global $post;
+    // where $data would be string(#) "current title"
+    // Example:
+    // (you would want to change $post->ID to however you are getting the book order #,
+    // but you can see how it works this way with global $post;)
+    return '鼠來寶-鼠喉大作戰 之 明星選拔賽';
+}

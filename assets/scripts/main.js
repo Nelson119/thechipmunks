@@ -11,7 +11,15 @@
  * ======================================================================== */
 
 (function($) {
+  var siteUrl = $('.mobile-home nav .home').attr('href');
+  function push(target){
 
+    var state = {
+        title: document.title,
+        url: siteUrl + '/' + target
+    };
+    window.history.pushState(state, document.title, siteUrl + '/term');
+  }
   // Use this variable to set up the common and page specific functions. If you
   // rename this variable, you will also need to rename the namespace below.
   var Sage = {
@@ -22,16 +30,6 @@
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
-      }
-    },
-    // Home page
-    'home': {
-      init: function() {
-        // JavaScript to be fired on the home page
-      },
-      finalize: function() {
-        // JavaScript to be fired on the home page, after the init JS
-        // alert($('.slick').slick);
         $('.slick li').width($('.mobile-home').width());
         $('.slick li').height($(window).height() - $('.mobile-home >nav').css('margin-top').replace(/px/,'') - $('.mobile-home >nav').css('padding-top').replace(/px/,''));
 
@@ -48,6 +46,8 @@
           cssEase: 'ease-in-out',
           fade: true
         });
+        var current = $('body').attr('data-current-slick') || 'home';
+        $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .' + current).index() );
         $(window).resize(function(){
           $('.slick li').width($('.slick-list').width());
           $('.slick li').height($(window).height() - $('.mobile-home >nav').css('margin-top').replace(/px/,'') - $('.mobile-home >nav').css('padding-top').replace(/px/,''));
@@ -56,22 +56,28 @@
         //活動辦法
         $('.mobile-home nav .term').on('click', function(){
           $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .term').index() );
+          push('term');
         });
         //回首頁
         $('.mobile-home nav .home').on('click', function(){
           $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .home').index() );
+          push('');
+          return false;
         });
         //我要當明星
         $('.mobile-home .slick-track .home .star').on('click', function(){
           $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .pick').index() );
+          push('pick');
         });
         //角色選擇
         $('.mobile-home .slick-track .pick a').on('click', function(){
           $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .download-app-tutorial').index() );
+          push('download-app-tutorial');
         });
         //我已經錄好，下一步
         $('.mobile-home .slick-track .download-app-tutorial .goto-upload').on('click', function(){
           $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .upload').index() );
+          push('upload');
         });
 
 
@@ -84,11 +90,12 @@
             url: './',
             dataType: 'json',
             done: function (e, data) {
-                $('.slick').removeClass('loading');
-                $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .upload-video').index());
+              $('.slick').removeClass('loading');
+              $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .list').index());
+              push('list');
             },
             progressall: function (e, data) {
-                var progress = parseInt(data.loaded / data.total * 100, 10);
+              var progress = parseInt(data.loaded / data.total * 100, 10);
                 // $('#progress .progress-bar').css(
                 //     'width',
                 //     progress + '%'
@@ -100,6 +107,16 @@
         })
         .prop('disabled', !$.support.fileInput)
             .parent().addClass($.support.fileInput ? undefined : 'disabled');
+      }
+    },
+    // Home page
+    'home': {
+      init: function() {
+        // JavaScript to be fired on the home page
+      },
+      finalize: function() {
+        // JavaScript to be fired on the home page, after the init JS
+        // alert($('.slick').slick);
 
       }
     },
