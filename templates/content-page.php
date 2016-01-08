@@ -79,10 +79,27 @@
 			</section>
 		</li>
 		<li class="list">
+			<section class="center">
+				<ul class="video-list row">
+				</ul>
+			</section>
 		</li>
-		<li class="watch ">
+		<li class="watch alvin">
+			<section class="center">
+				<aside class="author">
+					<img class="profile-pic">
+					<span class="name"></span>
+					<a class="share-btn">
+						<img src="<?php echo $theme_path?>images/mobile/share-btn.png">
+					</a>
+				</aside>
+				<aside class="video-container">
+					
+				</aside>
+			</section>
 		</li>
 	</ul>
+	<span class="copy">&copy; 2016 Fox</span>
 	<div id="fb-root"></div>
 	<script>(function(d, s, id) {
 		var appId = 574874969335972;

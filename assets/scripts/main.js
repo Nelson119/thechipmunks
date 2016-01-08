@@ -28,6 +28,8 @@ if(/localhost/.test(location.href)){
   }
 
   var popped = false;
+  var page = 1;
+  var end = false;
   var initialURL = location.href;
   $(window).bind('popstate', function (event) {
     // Ignore inital popstate that some browsers fire on page load
@@ -40,18 +42,96 @@ if(/localhost/.test(location.href)){
     var to = state.url.replace(/http:\/\/((.*)\/)+\/?([?]pagename[=])*/i,'');
     slickTo(to);
   });
+  function share(post){
+    if(post.url){
+      window.open('https://www.facebook.com/sharer.php?u='+encodeURIComponent(post.url)+'&t='+encodeURIComponent(post.title));
+    }else{
+      window.open('https://www.facebook.com/sharer.php?s=100&p[title]=' + post.title + '&p[summary]=' + post.description + '&p[url]=' + post.url + '&p[images][0]=' + post.image); 
+    }
+  }
+  function loadpage(cb){
 
-  function slickTo(target){
+      $.getJSON( siteUrl + '?page=' + page, function(r){
+        $.each(r.list, function(i, d){
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          $(a).attr('data-vid', d.vid).css('background-image', 'url(' + siteUrl+'/wp-content/themes/sage-theme/lib/videos/' + d.vid + '.jpg)');
+          $(li).attr('data-vpost', d.post_id);
+          $(a).on('click', function(){
+            slickTo('watch', d.post_id);
+          });
+          $(li).append(a);
+          $(li).addClass('col-xs-3');
+          $('.mobile-home .slick-track .list ul')
+            .append(li);
+        });
+        end = r.list;
+        page += 1;
+        if(cb){
+          cb();
+        }
+      });
+
+  }
+  function getpost(vpost){
+    $.getJSON('?vpost=' + vpost, function(r){
+      if(r.invalid){
+        alert('影片不存在');
+        slickTo('list');
+      }
+
+
+      $('.mobile-home .slick-track .watch .video-container').append(r.content);
+      $('.mobile-home .slick-track .watch .author .name').html(r.name);
+      $('.mobile-home .slick-track .watch .author .profile-pic')
+        .attr('src', 'https://graph.facebook.com/' + r.fbid + '/picture');
+      $('.mobile-home .slick-track .watch')
+        .removeClass('sidd')
+        .removeClass('alvin')
+        .removeClass('simon');
+      switch(r.chipmunk){
+        case '喜多':
+          $('.mobile-home .slick-track .watch').addClass('sidd');
+          break;
+        case '艾文':
+          $('.mobile-home .slick-track .watch').addClass('alvin');
+          break;
+        case '賽門':
+          $('.mobile-home .slick-track .watch').addClass('simon');
+          break;
+      }
+    });
+  }
+  function slickTo(target, postId){
     $('.slick').removeClass('loading');
-    target = target || 'home';
-    if(target !== 'term' || target !== 'list' || target !== 'watch'){
+    if(target !== 'term' && target !== 'list' && target !== 'watch' && target !== 'home'){
       if(!$('input[name=fbid]').val()){
         target = 'home';
       }else if(!$('input[name=chipmunk]').val()){
         target = 'pick';
       }
     }
+
+    if(target == 'list'){
+      $('.mobile-home').addClass('list');
+      page = 1;
+      loadpage(loadpage);
+    }else{
+      $('.mobile-home').removeClass('list');
+    }
+    if(target == 'watch'){
+      if(!postId){
+        target = 'list';
+      }
+    }
+    target = target || 'home';
     $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .' + target).index() );
+    if(target == 'watch'){
+      if(postId){
+        target += '&vid=' + postId;
+        getpost(postId);
+      }
+    }
     push(target);
   }
   // Use this variable to set up the common and page specific functions. If you
@@ -64,11 +144,26 @@ if(/localhost/.test(location.href)){
         hello.init({
           facebook: appId, 
         }, {redirect_uri: siteUrl, });
+
+        $('.share-btn').on('click', function(){
+          var post= {
+            url : location.href,
+            title: document.title
+          };
+          share(post);
+        });
+        $('.facebook').on('click', function(){
+          var post= {
+            url : siteUrl,
+            title: $('meta[property^=og][property$=title]').attr('content')
+          };
+          share(post);
+        });
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
-        $('.slick li').width($('.mobile-home').width());
-        $('.slick li').height($(window).height() - $('.mobile-home >nav').css('margin-top').replace(/px/,'') - $('.mobile-home >nav').css('padding-top').replace(/px/,''));
+        $('.slick >li').width($('.mobile-home').width());
+        $('.slick >li').height($(window).height() - $('.mobile-home >nav').css('margin-top').replace(/px/,'') - $('.mobile-home >nav').css('padding-top').replace(/px/,''));
 
         $('.slick').slick({
           infinite: true,
@@ -82,7 +177,8 @@ if(/localhost/.test(location.href)){
           fade: true
         });
         var current = $('body').attr('data-current-slick') || 'home';
-        slickTo(current);
+        var vid = $('body').attr('data-vid');
+        slickTo(current, vid);
         $(window).resize(function(){
           $('.slick li').width($('.slick-list').width());
           $('.slick li').height($(window).height() - $('.mobile-home >nav').css('margin-top').replace(/px/,'') - $('.mobile-home >nav').css('padding-top').replace(/px/,''));
@@ -99,21 +195,27 @@ if(/localhost/.test(location.href)){
         });
         //我要當明星 跟登入當明星
         $('.mobile-home .slick-track .home .star, .mobile-home .slick-track .term .star').on('click', function(){
-          
-          FB.login(function(response) {
-              if (response.authResponse) {
-               // console.log('Welcome!  Fetching your information.... ');
-               FB.api('/me?fields=email,name,id', function(me) {
-                 // console.log('Good to see you, ' + response.name + '.');
-                 $('input[name=me]').val(me.name);
-                 $('input[name=fbid]').val(me.id);
-                 $('input[name=email]').val(me.email);
-                 slickTo('pick');
-               });
-              } else {
-                alert('請先登入facebook');
-              }
-          },{scope: 'email'});
+          if(!$('input[name=fbid]').val()){
+            FB.login(function(response) {
+                if (response.authResponse) {
+                 // console.log('Welcome!  Fetching your information.... ');
+                 FB.api('/me?fields=email,name,id', function(me) {
+                   // console.log('Good to see you, ' + response.name + '.');
+                   $('input[name=me]').val(me.name);
+                   $('input[name=fbid]').val(me.id);
+                   $('input[name=email]').val(me.email);
+                   slickTo('pick');
+                 });
+                } else {
+                  alert('請先登入facebook');
+                }
+            },{scope: 'email'});
+          }else{
+            slickTo('pick');
+          }
+        });
+        $('.mobile-home .slick-track .home .fan').on('click', function(){
+          slickTo('list');
         });
         //角色選擇
         $('.mobile-home .slick-track .pick a.alvin').on('click', function(){
@@ -164,12 +266,13 @@ if(/localhost/.test(location.href)){
                   $('.slick').addClass('loading');
                   $.ajax({
                       url:'',
-                      type:'json',
                       method:'post',
                       data: post
-                    },function(r){
-                      slickTo('watch');
-                      $('.slick').removeClass('loading');
+                    }).error(function(){
+                      slickTo('home');
+                      alert('請稍後再試');
+                    }).success(function(r){
+                      slickTo('watch',r.post_id);
                     });
                 });
               }
@@ -187,6 +290,22 @@ if(/localhost/.test(location.href)){
         })
         .prop('disabled', !$.support.fileInput)
             .parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+        $(window).on('resize scroll', function(){
+            var winHeight = $(window).height();
+
+            var showupArr = [];
+            showupArr.push($('.copy'));
+
+            if($('.list.slick-active').length){
+              $.each(showupArr, function(i, d){
+                if( $(window).scrollTop() + winHeight - 100 > d.offset().top && !end){
+                  alert('');
+                  loadpage();
+                }
+              });
+            }
+        }).trigger('resize');
       }
     },
     // Home page

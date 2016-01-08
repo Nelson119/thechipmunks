@@ -55,6 +55,7 @@ function remove_thumbnail_dimensions( $html ) {                                 
 
 add_filter('show_admin_bar', '__return_false');
 
+remove_filter('template_redirect', 'redirect_canonical');
 
 add_filter('the_title','set_title');
 function set_title(){
