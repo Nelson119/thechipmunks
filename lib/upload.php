@@ -162,7 +162,9 @@ function copyfile_chunked($infile, $outfile)
 
       $source = $response->getGraphObject()->getProperty('source');
       $destination = __DIR__."/videos/".$video_id.'.mp4';
-
+      
+      $json['video_src'] = $source;
+      
       copyfile_chunked($source,$destination);
 
       $source = $response->getGraphObject()->asArray()['thumbnails'][0]['uri'];

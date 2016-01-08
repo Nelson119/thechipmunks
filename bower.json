@@ -14,13 +14,26 @@
     "modernizr": "~3.2.0",
     "blueimp-file-upload": "~9.11.2",
     "jquery-ui": "~1.11.4",
-    "bootstrap-fileinput": "~4.2.8"
+    "bootstrap-fileinput": "~4.2.8",
+    "font-awesome": "fontawesome#~4.5.0",
+    "hello": "~1.10.0"
   },
   "overrides": {
     "slick-carousel": {
       "main": [
         "./slick/slick.min.js",
         "./slick/fonts/slick.woff"
+      ]
+    },
+    "font-awesome": {
+      "main": [
+        "less/font-awesome.less",
+        "scss/font-awesome.scss",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.svg",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.woff2"
       ]
     },
     "bootstrap-sass": {

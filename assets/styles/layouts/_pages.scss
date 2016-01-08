@@ -168,7 +168,7 @@
 			position:relative;
 		}
 		&.loading:after {
-		    background: rgba(0, 0, 0, 0.2) url(../images/ajax-loader.gif) no-repeat scroll center center /20px 20px;
+		    background: rgba(0, 0, 0, 0.4) url(../images/ajax-loader.gif) no-repeat scroll center center /40px 40px;
 		    content: " ";
 		    height: 100%;
 		    left: 0;
@@ -189,13 +189,13 @@
 				bottom:0;
 				left:0;
 				img{
+					position:absolute;
+					top:0;
+					left:0;
 					width:100%;
 					&.hover{
 						transition-duration: 0.25s;
 						opacity:0;
-						position:absolute;
-						top:0;
-						left:0;
 					}
 				}
 				&:hover .hover{
@@ -207,12 +207,18 @@
 				margin-bottom:percentage(260/800);
 				margin-left:percentage(57/800);
 				width:percentage(419/800);
+				padding-top:percentage(195/800);
+				.fb-hint{
+				    margin-top: -2.9em;
+				    transform: rotateZ(7deg);
+				}
 			}
 			a.fan{
 				position:absolute;
 				margin-bottom:percentage(56/800);
 				margin-left:percentage(204/800);
 				width:percentage(414/800);
+				padding-top:percentage(195/800);
 			}
 		}
 		.download-app-tutorial{
@@ -282,6 +288,30 @@
 		}
 		.term{
 			background:url(../images/mobile/term.png) no-repeat 0 0/100% auto;
+			a.star{
+				position:absolute;
+				margin-bottom:percentage(55/800);
+				margin-left:percentage(195/800);
+				width:percentage(411/800);
+				display: block;
+				bottom:0;
+				left:0;
+				height:0;
+				padding-top:percentage(185/880);
+				img{
+					width:100%;
+					position:absolute;
+					top:0;
+					left:0;
+					&.hover{
+						transition-duration: 0.25s;
+						opacity:0;
+					}
+				}
+				&:hover .hover{
+					opacity:inherit;
+				}
+			}
 		}
 		.pick{
 			background:url(../images/mobile/pick.png) no-repeat 0 0/100% auto;
@@ -307,6 +337,12 @@
 		}
 		.upload{
 			background:url(../images/mobile/upload.png) no-repeat 0 0/100% auto;
+			.preview{
+			    left: 0;
+			    margin: 22% 0 0 10%;
+			    position: absolute;
+			    top: 0;
+			}
 			.pickvideo{
 				position:absolute;
 				margin:percentage(125/320) 0 0 percentage(130/320);
@@ -318,8 +354,11 @@
 					width:100%;
 				}
 				input{
-					height: 100%;
+					display: block;
+					height: 5em;
+					margin-left: -6em;
 					opacity: 0;
+					z-index: 10;
 				}
 			}
 			textarea{
@@ -337,7 +376,7 @@
 			}
 			.submit{
 				position:absolute;
-				margin:0 0 percentage(20/880) percentage(257/880);
+				margin:0 0 percentage(20/880) percentage(320/880);
 				bottom:0;
 				left:0;
 				width:percentage(296/880);
@@ -361,5 +400,22 @@
 				}
 			}
 		}
+	}
+	.fb-hint{
+	    border-radius: 0.5em;
+	    color: #4862a3;
+	    display: block;
+	    font-size: 0.6em;
+	    margin: -2.2em auto;
+	    position: relative;
+	    text-align: center;
+	    text-transform: uppercase;
+	    transform: rotateZ(-5deg);
+	    width: 50%;
+	    word-spacing: 0.5em;
+	    text-decoration: none!important;
+	}
+	a:hover .fb-hint{
+	    text-decoration: none!important;
 	}
 }

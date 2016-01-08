@@ -4,7 +4,7 @@
 <section class="desktop-home hidden-xs fade in">
 	<h1 class="logo"><img src="<?php echo $theme_path?>images/the-chipmunks.png"></h1>
 	<nav>
-		<a href="https://www.youtube.com/watch?v=CCY0alePMeM" class="more">
+		<a target="_blank" href="https://www.youtube.com/watch?v=CCY0alePMeM" class="more">
 			<img src="<?php echo $theme_path?>images/more.png">
 			<img class="hover" src="<?php echo $theme_path?>images/more-hover.png">
 		</a>
@@ -37,6 +37,10 @@
 			</a>
 		</li>
 		<li class="term">
+			<a class="star" href="javascript:" tabindex="500">
+				<img src="<?php echo $theme_path?>images/mobile/term-star.png">
+				<img class="hover" src="<?php echo $theme_path?>images/mobile/term-star-hover.png">
+			</a>
 		</li>
 		<li class="pick">
 			<a title="艾文" class="alvin" href="javascript:">alvin</a>
@@ -56,27 +60,40 @@
 		</li>
 		<li class="upload">
 			<section class="center">
+				<input name="vid" type="hidden"/>
+				<input name="video_src" type="hidden"/>
+				<input name="fbid" type="hidden"/>
+				<input name="me" type="hidden"/>
+				<input name="email" type="hidden"/>
+				<input name="chipmunk" type="hidden"/>
 				<a class="pickvideo" href="javascript:" tabindex="500">
 					<img src="<?php echo $theme_path?>images/mobile/btn-pick.png">
 					<input id="fileupload" accept="video/*" type="file" name="video">
 				</a>
-				<textarea placeholder="我要當明星！！">我要當明星！！</textarea>
+				<textarea name="message" placeholder="我要當明星！！">我要當明星！！</textarea>
 				<a class="submit" href="javascript:" tabindex="500">
 					<img src="<?php echo $theme_path?>images/mobile/submit.png">
 					<img class="hover" src="<?php echo $theme_path?>images/mobile/submit-hover.png">
 				</a>
+				<div class="preview"></div>
 			</section>
 		</li>
-		<li class="choose-role">
-			<section class="center">
-				<a class="google-play" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/google-play.png"></a>
-				<a class="app-store" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/app-store.png"></a>
-				<a class="goto-upload" href="javascript:">
-					<img src="<?php echo $theme_path?>images/mobile/goto-upload.png">
-					<img class="hover" src="<?php echo $theme_path?>images/mobile/goto-upload-hover.png">
-				</a>
-			</section>
+		<li class="list">
+		</li>
+		<li class="watch ">
 		</li>
 	</ul>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+		var appId = 574874969335972;
+		if(/localhost/.test(location.href)){
+		  appId = 578045952352207
+		}
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId="+appId;
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
 </section>
 <?php wp_link_pages(['before' => '<nav class="page-nav"><p>' . __('Pages:', 'sage'), 'after' => '</p></nav>']); ?>

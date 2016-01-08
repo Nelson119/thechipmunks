@@ -15,6 +15,7 @@
 $sage_includes = [
   'lib/assets.php',    // Scripts and stylesheets
   'lib/upload.php',    // Scripts and stylesheets
+  'lib/form.php',    // Scripts and stylesheets
   'lib/extras.php',    // Custom functions
   'lib/setup.php',     // Theme setup
   'lib/titles.php',    // Page titles
@@ -53,22 +54,6 @@ function remove_thumbnail_dimensions( $html ) {                                 
 }
 
 add_filter('show_admin_bar', '__return_false');
-
-
-// add_rewrite_rule('^section/(\w+)/chipmunks/(\w+)/?','index.php?page_id=4&section=$matches[1]&cm=$matches[2]');
-// add_rewrite_rule('^section/(\w+)/films/(\S+)/?','index.php?page_id=4&section=$matches[1]&vid=$matches[2]');
-function custom_rewrite_basic() {
-  // add_rewrite_rule('^slick/([^/]+)/?', 'index.php?pagename=term&slick=$matches[1]', 'top');
-  add_rewrite_rule('^slick/([^/]+)/cm/([^/]+)/?', '?slick=$matches[1]&cm=$matches[2]', 'top');
-  add_rewrite_rule('^slick/([^/]+)/vid/([^/]+)/?', '?slick=$matches[1]&vid=$matches[2]', 'top');
-}
-add_action('init', 'custom_rewrite_basic');
-function custom_rewrite_tag() {
-  add_rewrite_tag('%slick%', '([^&]+)');
-  add_rewrite_tag('%cm%', '([^&]+)');
-  add_rewrite_tag('%vid%', '([^&]+)');
-}
-add_action('init', 'custom_rewrite_tag', 10, 0);
 
 
 add_filter('the_title','set_title');
