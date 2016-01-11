@@ -1,21 +1,22 @@
 <?php //the_content(); ?>
 <?php $theme_path = get_template_directory_uri() . '/dist/'?>
 
-<section class="desktop-home hidden-xs fade in">
+<section class="desktop-home hidden-xs hidden-sm fade in">
 	<h1 class="logo"><img src="<?php echo $theme_path?>images/the-chipmunks.png"></h1>
 	<nav>
 		<a target="_blank" href="https://www.youtube.com/watch?v=CCY0alePMeM" class="more">
 			<img src="<?php echo $theme_path?>images/more.png">
 			<img class="hover" src="<?php echo $theme_path?>images/more-hover.png">
 		</a>
-		<a href="javascript:" class="pickme">
+		<a class="pickme">
 			<figure class="qrcode"><img src="<?php echo $theme_path?>images/qrcode.png"></figure>
 			<img src="<?php echo $theme_path?>images/pickme.png">
-			<img class="hover" src="<?php echo $theme_path?>images/pickme-hover.png">
+			<img class="hover" src="<?php echo $theme_path?>images/pickme.png">
 		</a>
+		<span class="copy">&copy; 2016 Fox</span>
 	</nav>
 </section>
-<section class="mobile-home visible-xs">
+<section class="mobile-home visible-sm visible-xs">
 	<nav>
 		<ul>
 			<li><a class="home" href="<?php echo get_site_url()?>"><h1>鼠來寶</h1></a></li>
@@ -43,19 +44,28 @@
 			</a>
 		</li>
 		<li class="pick">
-			<a title="艾文" class="alvin" href="javascript:">alvin</a>
-			<a title="賽門" class="simon" href="javascript:">simon</a>
-			<a title="喜多" class="sidd" href="javascript:">sidd</a>
+			<section class="center">
+				<h3><img src="<?php echo $theme_path?>images/mobile/pick-title.png"></h3>
+				<a title="艾文" class="alvin" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/alvin.png"></a>
+				<a title="賽門" class="simon" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/simon.png"></a>
+				<a title="喜多" class="sidd" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/sidd.png"></a>
+			</section>
 		</li>
 		<li class="download-app-tutorial">
 			<section class="center">
-				<a class="google-play" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/google-play.png"></a>
-				<a class="app-store" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/app-store.png"></a>
-				
-				<a class="goto-upload" href="javascript:" tabindex="500">
-					<img src="<?php echo $theme_path?>images/mobile/goto-upload.png">
-					<img class="hover" src="<?php echo $theme_path?>images/mobile/goto-upload-hover.png">
-				</a>
+				<h3><img src="<?php echo $theme_path?>images/mobile/pick-title.png"></h3>
+				<a title="艾文" class="alvin" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/alvin.png"></a>
+				<a title="賽門" class="simon" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/simon.png"></a>
+				<a title="喜多" class="sidd" href="javascript:"><img src="<?php echo $theme_path?>images/mobile/sidd.png"></a>
+				<section class="buttons">
+					<a class="google-play" href="https://goo.gl/0MocGm"><img src="<?php echo $theme_path?>images/mobile/google-play.png"></a>
+					<a class="app-store" href="https://goo.gl/oAGksO"><img src="<?php echo $theme_path?>images/mobile/app-store.png"></a>
+					
+					<a class="goto-upload" href="javascript:" tabindex="500">
+						<img src="<?php echo $theme_path?>images/mobile/goto-upload.png">
+						<img class="hover" src="<?php echo $theme_path?>images/mobile/goto-upload-hover.png">
+					</a>
+				</section>
 			</section>
 		</li>
 		<li class="upload">
@@ -66,6 +76,8 @@
 				<input name="me" type="hidden"/>
 				<input name="email" type="hidden"/>
 				<input name="chipmunk" type="hidden"/>
+				<h3><img src="<?php echo $theme_path?>images/mobile/upload-title.png"></h3>
+				<img class="text" src="<?php echo $theme_path?>images/mobile/upload-text.png">
 				<a class="pickvideo" href="javascript:" tabindex="500">
 					<img src="<?php echo $theme_path?>images/mobile/btn-pick.png">
 					<input id="fileupload" accept="video/*" type="file" name="video">
@@ -80,12 +92,14 @@
 		</li>
 		<li class="list">
 			<section class="center">
+				<h3><img src="<?php echo $theme_path?>images/mobile/list-title.png"></h3>
 				<ul class="video-list row">
 				</ul>
 			</section>
 		</li>
 		<li class="watch alvin">
 			<section class="center">
+				<h3><img src="<?php echo $theme_path?>images/mobile/watch-title.png"></h3>
 				<aside class="author">
 					<img class="profile-pic">
 					<span class="name"></span>

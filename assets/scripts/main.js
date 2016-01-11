@@ -19,6 +19,8 @@ if(/localhost/.test(location.href)){
   var siteUrl = $('.mobile-home nav .home').attr('href');
 
   function push(target){
+    console.log('push');
+    console.log('push',target);
 
     var state = {
         title: document.title,
@@ -37,10 +39,19 @@ if(/localhost/.test(location.href)){
     popped = true;
     if (initialPop) return;
 
+
     // showMailOverview(); // exmaple function to display all email since the user has click Back.
     var state = event.originalEvent.state;
-    var to = state.url.replace(/http:\/\/((.*)\/)+\/?([?]pagename[=])*/i,'');
-    slickTo(to);
+    var to = state.url.replace(/(http[:])?\/\/((.*)\/)+\/?([?]pagename[=])*[&]?/i,'');
+    var vid = state.url.replace(/.*vid=(.*)[&]?/ig,'$1');
+    slickTo(to, vid);
+  });
+  $(window).bind('pushstate', function (event) {
+    // showMailOverview(); // exmaple function to display all email since the user has click Back.
+    var state = event.originalEvent.state;
+    var to = state.url.replace(/(http[:])?\/\/((.*)\/)+\/?([?]pagename[=])*[&]?/i,'');
+    var vid = state.url.replace(/.*vid=(.*)[&]?/ig,'$1');
+    slickTo(to, vid);
   });
   function share(post){
     if(post.url){
@@ -61,9 +72,12 @@ if(/localhost/.test(location.href)){
             slickTo('watch', d.post_id);
           });
           $(li).append(a);
-          $(li).addClass('col-xs-3');
+          $(li).addClass('col-xs-3 fade');
           $('.mobile-home .slick-track .list ul')
             .append(li);
+            setTimeout(function(){
+              $(li).addClass('in');
+            }, i * 50);
         });
         end = r.list;
         page += 1;
@@ -80,8 +94,8 @@ if(/localhost/.test(location.href)){
         slickTo('list');
       }
 
-
-      $('.mobile-home .slick-track .watch .video-container').append(r.content);
+      var template = '<video src="' + siteUrl+'/wp-content/themes/sage-theme/lib/videos/'+r.vid+'.mp4" poster="' + siteUrl+'/wp-content/themes/sage-theme/lib/videos/'+r.vid+'.jpg" preload="metadata" controls="controls" autoplay="autoplay" width="480" height="320"><source src="' + siteUrl+'/wp-content/themes/sage-theme/lib/videos/'+r.vid+'.mp4" /></video>';
+      $('.mobile-home .slick-track .watch .video-container').html(template);
       $('.mobile-home .slick-track .watch .author .name').html(r.name);
       $('.mobile-home .slick-track .watch .author .profile-pic')
         .attr('src', 'https://graph.facebook.com/' + r.fbid + '/picture');
@@ -111,9 +125,12 @@ if(/localhost/.test(location.href)){
         target = 'pick';
       }
     }
-
     if(target == 'list'){
+      if($('.mobile-home').hasClass('list')){
+        return;
+      }
       $('.mobile-home').addClass('list');
+      $('.mobile-home .slick-track .list ul').html('');
       page = 1;
       loadpage(loadpage);
     }else{
@@ -123,6 +140,11 @@ if(/localhost/.test(location.href)){
       if(!postId){
         target = 'list';
       }
+    }else{
+      $('.mobile-home .slick-track .watch .video-container').html('');
+      $('.mobile-home .slick-track .watch .author .name').html('');
+      $('.mobile-home .slick-track .watch .author .profile-pic')
+        .attr('src', '');
     }
     target = target || 'home';
     $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .' + target).index() );
@@ -300,7 +322,6 @@ if(/localhost/.test(location.href)){
             if($('.list.slick-active').length){
               $.each(showupArr, function(i, d){
                 if( $(window).scrollTop() + winHeight - 100 > d.offset().top && !end){
-                  alert('');
                   loadpage();
                 }
               });

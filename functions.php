@@ -57,12 +57,12 @@ add_filter('show_admin_bar', '__return_false');
 
 remove_filter('template_redirect', 'redirect_canonical');
 
-add_filter('the_title','set_title');
-function set_title(){
-    global $post;
-    // where $data would be string(#) "current title"
-    // Example:
-    // (you would want to change $post->ID to however you are getting the book order #,
-    // but you can see how it works this way with global $post;)
-    return '鼠來寶-鼠喉大作戰 之 明星選拔賽';
-}
+// add_filter('the_title','set_title');
+// function set_title(){
+//     global $post;
+//     // where $data would be string(#) "current title"
+//     // Example:
+//     // (you would want to change $post->ID to however you are getting the book order #,
+//     // but you can see how it works this way with global $post;)
+//     return '鼠來寶-鼠喉大作戰 之 明星選拔賽';
+// }

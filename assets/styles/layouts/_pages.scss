@@ -73,15 +73,15 @@
 			}
 			a.pickme{
 				position:absolute;
-				margin-bottom:percentage(95/2400);
-				margin-left:percentage(1034/1600);
+				margin-bottom:percentage(55/2400);
+				margin-left:percentage(1000/1600);
 				width:percentage(560/2400);
 				.qrcode{
 					top:0;
 					left:0;
 					position:absolute;
-					margin-top:percentage(-293/560);
-					margin-left:percentage(103/1600);
+					margin-top:percentage(-268/560);
+					margin-left:percentage(350/1600);
 					width:percentage(343/560);
 					img{
 						width:100%;
@@ -99,6 +99,9 @@
 		height:100%;
 		&.list{
 			overflow:auto;
+			.copy{
+				position:relative;
+			}
 		}
 		nav{
 			display: block;
@@ -225,15 +228,49 @@
 			}
 		}
 		.download-app-tutorial{
-			background:url(../images/mobile/pick.png) no-repeat 0 0/100% auto;
-			padding-top: 1em * (75/14);
 			.center{
-				background:url(../images/mobile/download-app-tutorial-bg.png) no-repeat center top/ cover;
-				margin:0 auto;
-				width:percentage(660/880);
-				height: 0;
-				padding-top:percentage(836/880);
+				background:url(../images/mobile/shape.png) no-repeat 0 0/100% auto;
+				width: percentage(660/800);
 				position:relative;
+				margin:20% auto 1em;
+				padding-top:1px;
+				padding-bottom:percentage(50/800);
+				border-top:2px solid #d20613;
+				border-bottom :2px solid #d20613;
+				h3{
+					position:absolute;
+					width: 100%;
+					margin:percentage(-120/660) auto percentage(60/660);
+					text-align: center;
+					img{
+						display: inline-block;
+						width: percentage(260/660);
+					}
+				}
+				>a{
+					position:relative;
+					text-indent: -999em;
+					display: block;
+					width: percentage(520/800);
+					height: 0;
+					padding-top:percentage(300/800);
+					margin:percentage(50/800) 0 0 percentage(90/800);
+					img{
+						height:100%;
+						position:absolute;
+						top:0;
+					}
+				}
+			}
+			.buttons{
+				background:url(../images/mobile/download-app-tutorial-bg.png) no-repeat center top/ cover;
+				top:0;
+				left:0;
+				margin:percentage(40/660) 0 0 0;
+				width:100%;
+				height: 0;
+				padding-top:percentage(836/660);
+				position:absolute;
 				.google-play{
 					position:absolute;
 					top:0;
@@ -317,38 +354,73 @@
 			}
 		}
 		.pick{
-			background:url(../images/mobile/pick.png) no-repeat 0 0/100% auto;
-			a{
-				position:absolute;
-				top:0;
-				left: 0;
-				// background:rgba(0,0,0,0.5);
-				text-indent: -999em;
-				margin-top:percentage(87/320);
-				margin-left:percentage(30/320);
-				display: block;
-				width: percentage(262/320);
-				height: 0;
-				padding-top:percentage(98/320);
-				&.simon{
-					margin-top:percentage(200/320);
+			.center{
+				background:url(../images/mobile/shape.png) no-repeat 0 0/100% auto;
+				width: percentage(660/800);
+				position:relative;
+				margin:13% auto 1em;
+				padding-top:1px;
+				padding-bottom:percentage(50/800);
+				border-top:2px solid #d20613;
+				border-bottom :2px solid #d20613;
+				h3{
+					position:absolute;
+					width: 100%;
+					margin:percentage(-100/660) auto percentage(60/660);
+					text-align: center;
+					img{
+						display: inline-block;
+						width: percentage(260/660);
+					}
 				}
-				&.sidd{
-					margin-top:percentage(314/320);
+				>a{
+					position:relative;
+					text-indent: -999em;
+					display: block;
+					width: percentage(520/800);
+					height: 0;
+					padding-top:percentage(300/800);
+					margin:percentage(50/800) 0 0 percentage(90/800);
+					img{
+						height:100%;
+						position:absolute;
+						top:0;
+					}
 				}
 			}
 		}
 		.upload{
-			background:url(../images/mobile/upload.png) no-repeat 0 0/100% auto;
+			// background:url(../images/mobile/upload.png) no-repeat 0 0/100% auto;
 			.preview{
 			    left: 0;
 			    margin: 22% 0 0 10%;
 			    position: absolute;
 			    top: 0;
 			}
+			.center{
+				background:url(../images/mobile/shape.png) no-repeat 0 0/100% auto;
+				width: percentage(660/800);
+				position:relative;
+				margin:13% auto 1em;
+				padding-top:percentage(915/800);
+				border-top:2px solid #d20613;
+				border-bottom :2px solid #d20613;
+				h3{
+					top:0;
+					left:0;
+					position:absolute;
+					width: 100%;
+					margin:percentage(-100/660) auto percentage(30/660);
+					text-align: center;
+					img{
+						display: inline-block;
+						width: percentage(260/660);
+					}
+				}
+			}
 			.pickvideo{
 				position:absolute;
-				margin:percentage(125/320) 0 0 percentage(130/320);
+				margin:percentage(75/320) 0 0 percentage(130/320);
 				top:0;
 				left:0;
 				width:percentage(159/880);
@@ -364,13 +436,20 @@
 					z-index: 10;
 				}
 			}
-			textarea{
+			.text{
 				position:absolute;
-				margin:percentage(620/880) 0 0 percentage(106/880);
+				margin:percentage(55/660) 0 0 percentage(181/660);
 				top:0;
 				left:0;
-				width:percentage(660/880);
-				height:26%;
+				width:percentage(305/660);
+			}
+			textarea{
+				position:absolute;
+				margin:percentage(383/660) 0 0 percentage(40/660);
+				top:0;
+				left:0;
+				width:percentage(585/660);
+				height:35%;
 				resize:none;
 				border:0;
 				color:#fff;
@@ -380,7 +459,7 @@
 			.submit{
 				position:absolute;
 				margin:0 0 percentage(20/880) percentage(320/880);
-				bottom:0;
+				bottom:percentage(20/800);
 				left:0;
 				width:percentage(296/880);
 				padding-bottom:percentage(173/880);
@@ -404,18 +483,29 @@
 			}
 		}
 		.list{
-			background:url(../images/mobile/list.png) no-repeat 0 0/100% auto;
+			// background:url(../images/mobile/list.png) no-repeat 0 0/100% auto;
 			height:auto!important;
 			.center{
 				width: percentage(720/880);
 				position:relative;
 				margin:22% auto 1em;
+				h3{
+					margin:percentage(-110/720) auto percentage(50/720);
+					width: percentage(247/720);
+					img{
+						width:100%;
+					}
+				}
 			}
 			.video-list{
+				min-height: 400px;
+				background:url(../images/mobile/shape.png) no-repeat 0 0/auto 100%;
 				width: 100%;
-				padding:0;
-				margin:0 -5% 0 1%;
+				padding: percentage(70/660) percentage(20/660);
+				margin:0 -5% 0 0%;
 				list-style: none;
+				border-top:2px solid #d20613;
+				border-bottom :2px solid #d20613;
 				li{
 					padding: 25% 0 0;
 					height:0;
@@ -459,20 +549,41 @@
 			}
 		}
 		.watch{
-			background:url(../images/mobile/watch.png) no-repeat 0 0/100% auto;
-			&.alvin{
+			// background:url(../images/mobile/watch.png) no-repeat 0 0/100% auto;
+			&.alvin .center{
 				background-image:url(../images/mobile/watch-alvin.png);
 			}
-			&.simon{
+			&.simon .center{
 				background-image:url(../images/mobile/watch-simon.png);
 			}
-			&.sidd{	
+			&.sidd .center{	
 				background-image:url(../images/mobile/watch-sidd.png);
 			}
 			.center{
+				background:no-repeat 0 0/100% auto;
+				width: percentage(660/800);
+				position:relative;
+				margin:2% auto 1em;
+				padding-top:1px;
+				padding-bottom:percentage(50/800);
+				// border-top:2px solid #d20613;
+				// border-bottom :2px solid #d20613;
+				h3{
+					position:absolute;
+					width: 100%;
+					margin:percentage(55/660) auto percentage(60/660);
+					text-align: left;
+					padding-left:percentage(38/800);
+					img{
+						display: inline-block;
+						width: percentage(265/660);
+					}
+				}
+			}
+			.center{
 				.author{
-					margin:percentage(198/800) percentage(115/800) 0;
-					width:percentage(415/800);
+					margin:percentage(250/800) percentage(40/800) 0;
+					width:percentage(510/800);
 					padding-top:percentage(135/800);
 					position:relative;
 					.share-btn{
@@ -510,7 +621,7 @@
 					}
 				}
 				.video-container{
-					width:percentage(590/800);
+					width:percentage(720/800);
 					position:relative;
 					padding-top:percentage(630/800);
 					background:rgba(0,0,0,0.6);
@@ -552,5 +663,22 @@
 	    position: absolute;
 	    text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.8);
 	    width: 80%;
+	}
+	.desktop-home{
+		.copy{
+			font-size: 120%;
+			font-weight:bold;
+		}
+	}
+}
+@media (max-width: 992px) and (orientation:landscape) {
+	.slick:after{
+		background: rgba(0, 0, 0, 0.4) url(../images/no-landscape.svg) no-repeat scroll center center / 100px auto;
+		content: " ";
+		height: 100%;
+		left: 0;
+		position: fixed;
+		top: 0;
+		width: 100%;
 	}
 }

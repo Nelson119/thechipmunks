@@ -11,7 +11,7 @@
       'message' => $_POST['message']
     );
     $post = array(
-      'post_content'   =>'<video width="480" height="320" id="u_e_i" data-video-height="497" data-video-width="280" class="_ox1" preload="metadata" src="'.get_site_url().'/wp-content/themes/sage-theme/lib/videos/'.$form['vid'].'.mp4"></video>',
+      'post_content'   =>'<video poster="'.get_site_url().'/wp-content/themes/sage-theme/lib/videos/'.$form['vid'].'.jpg" src="'.get_site_url().'/wp-content/themes/sage-theme/lib/videos/'.$form['vid'].'.mp4" preload="metadata" controls="controls" width="480" height="320"><source src="'.get_site_url().'/wp-content/themes/sage-theme/lib/videos/'.$form['vid'].'.mp4" /></video>',
       'post_name'      =>$form['name'],
       'post_title'     =>$form['name'].' 的影片',
       'post_status'    =>'publish',
@@ -79,7 +79,7 @@
     $json = array();
     $args = array(
       'post_type' => 'post',
-      'ID' => $post_id
+      'p' => $post_id
     );
     $wp_query = new WP_Query( $args ); 
     if (have_posts()):
@@ -107,7 +107,7 @@ use Roots\Sage\Wrapper;
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
   <?php get_template_part('templates/head'); ?>
-  <body <?php body_class(); ?> data-current-slick="<?php echo get_query_var('pagename');?>" data-vid="<?php echo $_GET['vid']?>">
+  <body <?php body_class(); ?> data-current-slick="<?php echo isset($_GET['pagename'])?$_GET['pagename']:''?>" data-vid="<?php echo isset($_GET['vid'])?$_GET['vid']:''?>">
     <!--[if IE]>
       <div class="alert alert-warning">
         <?php _e('You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.', 'sage'); ?>
