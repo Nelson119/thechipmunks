@@ -25,20 +25,20 @@
 			<li><a class="facebook" href="javascript:">facebook</a></li>
 		</ul>
 	</nav>
-	<ul class="slick">
+	<ul class="slick loading">
 		<li class="home">
 			<h2><img src="<?php echo $theme_path?>images/mobile/r-u-ready.png"></h2>
 			<a href="javascript:" class="fan">
 				<img src="<?php echo $theme_path?>images/mobile/be-a-fan.png">
 				<img class="hover" src="<?php echo $theme_path?>images/mobile/be-a-fan-hover.png">
 			</a>
-			<a href="javascript:" class="star">
+			<a href="https://www.facebook.com/dialog/oauth?response_type=token&scope=email&client_id=574874969335972&redirect_uri=http://event.ck101.com/thechipmunks/?pagename=pick" class="star">
 				<img src="<?php echo $theme_path?>images/mobile/be-a-star.png">
 				<img class="hover" src="<?php echo $theme_path?>images/mobile/be-a-star-hover.png">
 			</a>
 		</li>
 		<li class="term">
-			<a class="star" href="javascript:" tabindex="500">
+			<a class="star" href="https://www.facebook.com/dialog/oauth?response_type=token&scope=email&client_id=574874969335972&redirect_uri=http://event.ck101.com/thechipmunks/?pagename=pick" tabindex="500">
 				<img src="<?php echo $theme_path?>images/mobile/term-star.png">
 				<img class="hover" src="<?php echo $theme_path?>images/mobile/term-star-hover.png">
 			</a>
@@ -111,20 +111,14 @@
 					
 				</aside>
 			</section>
+			<a class="goback" href="javascript:" tabindex="500">
+				<img src="<?php echo $theme_path?>images/mobile/back-list.png">
+				<img class="hover" src="<?php echo $theme_path?>images/mobile/back-list-hover.png">
+			</a>
 		</li>
 	</ul>
 	<span class="copy">&copy; 2016 Fox</span>
-	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-		var appId = 574874969335972;
-		if(/localhost/.test(location.href)){
-		  appId = 578045952352207
-		}
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId="+appId;
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
+  <div id="fb-root"></div>
+  <script src="//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.5&appId=574874969335972"></script>
 </section>
 <?php wp_link_pages(['before' => '<nav class="page-nav"><p>' . __('Pages:', 'sage'), 'after' => '</p></nav>']); ?>

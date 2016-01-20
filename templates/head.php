@@ -1,3 +1,9 @@
+<?php
+	use Facebook\Facebook;
+	// $loader = require __DIR__.'/vendor/autoload.php';
+	// require_once __DIR__.'/vendor/facebook/php-sdk-v4/src/Facebook/autoload.php'; 
+
+?>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">

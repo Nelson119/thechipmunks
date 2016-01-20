@@ -12,7 +12,7 @@
 
   // If you already have a valid access token:
 
-  $token = 'CAAIK2IJWaKQBAIKIhtIEW0TDHTjlguAdZBLvRg1Q2tPBaOeS4pzvJufEStKIHvbpEqYXVRHhFsf5hmr7fR2IYOjk5pF3mQCQTv6szvvTLRAo0XBLH2muN0kjMGbPzWiHQdDL5WXdoiftpyCVuS7e5XvyOwuj6nkThuZAT2MuD3cqxSLb7ZAjaOw0bZBNYo8ZD';
+  $token = 'CAAIK2IJWaKQBALBn5KRoZBRboyKMwQXfrcK4PKhIXFx6XYYSFzIehxjzssd7mY9soWwdExMN7kIQ3Svagyp3Q6W2KsqILf7EPgZB7NPLl08bteZCKziy9JDZBAZB357oflNuXUzrxPLnkB8h8naoJa45XpupHyjCSflaK7Ji6pczsZBlbDxkPMlXUP7Otpma4XY3GgSq8vNAZDZD';
 
 function copyfile_chunked($infile, $outfile)
 {

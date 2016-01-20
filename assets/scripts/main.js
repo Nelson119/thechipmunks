@@ -14,7 +14,6 @@ var appId = 574874969335972;
 if(/localhost/.test(location.href)){
   appId = 578045952352207;
 }
-
 (function($) {
   var siteUrl = $('.mobile-home nav .home').attr('href');
 
@@ -98,6 +97,7 @@ if(/localhost/.test(location.href)){
       $('.mobile-home .slick-track .watch .video-container').html(template);
       $('.mobile-home .slick-track .watch .author .name').html(r.name);
       $('.mobile-home .slick-track .watch .author .profile-pic')
+        .addClass('fade in')
         .attr('src', 'https://graph.facebook.com/' + r.fbid + '/picture');
       $('.mobile-home .slick-track .watch')
         .removeClass('sidd')
@@ -119,11 +119,44 @@ if(/localhost/.test(location.href)){
   function slickTo(target, postId){
     $('.slick').removeClass('loading');
     if(target !== 'term' && target !== 'list' && target !== 'watch' && target !== 'home'){
-      if(!$('input[name=fbid]').val()){
-        target = 'home';
-      }else if(!$('input[name=chipmunk]').val()){
-        target = 'pick';
+        console.log(target);
+      if(target == 'pick'){
+        FB.getLoginStatus(function(r) {
+        if (r.status === 'connected') {
+          console.log(r.status);
+
+          $('.slick').addClass('loading');
+          FB.api('/me?fields=email,name,id', function(me) {
+            // console.log('Good to see you, ' + response.name + '.');
+            $('input[name=me]').val(me.name);
+            $('input[name=fbid]').val(me.id);
+            $('input[name=email]').val(me.email);
+            // slickTo('pick');
+
+            $('.slick').removeClass('loading');
+            $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .' + target).index() );
+          });
+        } else if (r.status === 'not_authorized') {
+          // the user is logged in to Facebook, 
+          // but has not authenticated your app
+          // location.href = $(o).attr('href');
+          alert('請先登入應用程式');
+            $('.slick').removeClass('loading');
+            $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .home').index() );
+        } else {
+          // the user isn't logged in to Facebook.
+          alert('請先登入Facebook');
+            $('.slick').removeClass('loading');
+            $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .home').index() );
+        }
+       });
+        return false;
       }
+      // if(!$('input[name=fbid]').val()){
+      //   target = 'home';
+      // }else if(!$('input[name=chipmunk]').val()){
+      //   target = 'pick';
+      // }
     }
     if(target == 'list'){
       if($('.mobile-home').hasClass('list')){
@@ -144,7 +177,7 @@ if(/localhost/.test(location.href)){
       $('.mobile-home .slick-track .watch .video-container').html('');
       $('.mobile-home .slick-track .watch .author .name').html('');
       $('.mobile-home .slick-track .watch .author .profile-pic')
-        .attr('src', '');
+        .addClass('fade').removeClass('in').attr('src', '');
     }
     target = target || 'home';
     $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .' + target).index() );
@@ -165,8 +198,9 @@ if(/localhost/.test(location.href)){
         // JavaScript to be fired on all pages
         hello.init({
           facebook: appId, 
-        }, {redirect_uri: siteUrl, });
-
+        }, {redirect_uri: siteUrl }
+        );
+        
         $('.share-btn').on('click', function(){
           var post= {
             url : location.href,
@@ -200,6 +234,8 @@ if(/localhost/.test(location.href)){
         });
         var current = $('body').attr('data-current-slick') || 'home';
         var vid = $('body').attr('data-vid');
+        // var code = location.href.replace(/.*code=(.*)[&]?/ig,'$1');
+
         slickTo(current, vid);
         $(window).resize(function(){
           $('.slick li').width($('.slick-list').width());
@@ -217,7 +253,13 @@ if(/localhost/.test(location.href)){
         });
         //我要當明星 跟登入當明星
         $('.mobile-home .slick-track .home .star, .mobile-home .slick-track .term .star').on('click', function(){
-          if(!$('input[name=fbid]').val()){
+          if(/iphone|ipad/ig.test(navigator.userAgent) && /chrome/ig.test(navigator.userAgent)){
+            if(!$('input[name=fbid]').val()){
+            }else{
+              slickTo('pick');
+              return false;
+            }
+          }else{
             FB.login(function(response) {
                 if (response.authResponse) {
                  // console.log('Welcome!  Fetching your information.... ');
@@ -232,8 +274,6 @@ if(/localhost/.test(location.href)){
                   alert('請先登入facebook');
                 }
             },{scope: 'email'});
-          }else{
-            slickTo('pick');
           }
         });
         $('.mobile-home .slick-track .home .fan').on('click', function(){
@@ -255,6 +295,11 @@ if(/localhost/.test(location.href)){
         //我已經錄好，下一步
         $('.mobile-home .slick-track .download-app-tutorial .goto-upload').on('click', function(){
           slickTo('upload');
+        });
+
+        //我已經錄好，下一步
+        $('.mobile-home .slick-track .watch .goback').on('click', function(){
+          slickTo('list');
         });
 
 

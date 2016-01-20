@@ -499,7 +499,7 @@
 			}
 			.video-list{
 				min-height: 400px;
-				background:url(../images/mobile/shape.png) no-repeat 0 0/auto 100%;
+				background:url(../images/mobile/shape.png) no-repeat 0 0/cover;
 				width: 100%;
 				padding: percentage(70/660) percentage(20/660);
 				margin:0 -5% 0 0%;
@@ -633,6 +633,31 @@
 						height:100%;
 						position:absolute;
 					}
+				}
+			}
+			.goback{
+				position:absolute;
+				margin:0 0 percentage(29/800) percentage(192/800);
+				bottom:0;
+				left:0;
+				width:percentage(388/800);
+				padding-bottom:percentage(198/800);
+				input{
+					opacity:0;
+				}
+				img{
+					position:absolute;
+					top:0;
+					left:0;
+					width:100%;
+					&.hover{
+						position:absolute;
+						transition-duration: 0.25s;
+						opacity:0;
+					}
+				}
+				&:hover .hover{
+					opacity:inherit;
 				}
 			}
 		}
