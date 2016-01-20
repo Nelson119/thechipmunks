@@ -117,7 +117,6 @@ if(/localhost/.test(location.href)){
     });
   }
   function slickTo(target, postId){
-    $('.slick').removeClass('loading');
     if(target !== 'term' && target !== 'list' && target !== 'watch' && target !== 'home'){
         console.log(target);
       if(target == 'pick'){
@@ -180,6 +179,7 @@ if(/localhost/.test(location.href)){
         .addClass('fade').removeClass('in').attr('src', '');
     }
     target = target || 'home';
+    $('.slick').removeClass('loading');
     $('.slick').slick('slickGoTo', $('.mobile-home .slick-track .' + target).index() );
     if(target == 'watch'){
       if(postId){
@@ -253,8 +253,9 @@ if(/localhost/.test(location.href)){
         });
         //我要當明星 跟登入當明星
         $('.mobile-home .slick-track .home .star, .mobile-home .slick-track .term .star').on('click', function(){
-          if(/iphone|ipad/ig.test(navigator.userAgent) && /chrome/ig.test(navigator.userAgent)){
+          if(/crios/ig.test(navigator.userAgent)){
             if(!$('input[name=fbid]').val()){
+              return true;
             }else{
               slickTo('pick');
               return false;
@@ -275,6 +276,7 @@ if(/localhost/.test(location.href)){
                 }
             },{scope: 'email'});
           }
+          return false;
         });
         $('.mobile-home .slick-track .home .fan').on('click', function(){
           slickTo('list');
